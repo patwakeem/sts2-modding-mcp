@@ -56,21 +56,14 @@ public static class ModEntry
                 AppDomain.CurrentDomain.GetAssemblies()
                     .FirstOrDefault(a => a.GetName().Name == name.Name);
 
-            // Register all custom relics
+            // Sample relics deliberately NOT registered. They ship with the bridge as
+            // demo content, but they have no localization, so they turn up in a real run
+            // as "relics.COUNTER_STRIKE.title" and they change the relic pool of whatever
+            // save you are playing. The bridge is a test harness; it has no business
+            // altering the game it is meant to observe.
             try
             {
-                ModHelper.AddModelToPool<SharedRelicPool, McpTestRelic>();
-                ModHelper.AddModelToPool<SharedRelicPool, BloodPact>();
-                ModHelper.AddModelToPool<SharedRelicPool, GoldShield>();
-                ModHelper.AddModelToPool<SharedRelicPool, ThornArmor>();
-                ModHelper.AddModelToPool<SharedRelicPool, WarCry>();
-                ModHelper.AddModelToPool<SharedRelicPool, VampiricBlade>();
-                ModHelper.AddModelToPool<SharedRelicPool, SpellEcho>();
-                ModHelper.AddModelToPool<SharedRelicPool, BerserkerRage>();
-                ModHelper.AddModelToPool<SharedRelicPool, CounterStrike>();
-                ModHelper.AddModelToPool<SharedRelicPool, WeakeningAura>();
-                ModHelper.AddModelToPool<SharedRelicPool, HealingTouch>();
-                WriteLog("Registered 11 custom relics in SharedRelicPool.");
+                WriteLog("Sample relics not registered (bridge is observation-only).");
             }
             catch (Exception ex2)
             {
