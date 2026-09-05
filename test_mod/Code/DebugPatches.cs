@@ -117,7 +117,10 @@ public static class DebugPatches
         [HarmonyPrefix]
         public static void BeforeCombatStart() => NotifyHook("BeforeCombatStart");
 
-        [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Hooks.Hook), "BeforePlayPhaseStart")]
+        // BeforePlayPhaseStart is gone from Hook; AfterAutoPrePlayPhaseEntered is the surviving equivalent.
+        // The name reported to breakpoint clients stays the old one so existing
+        // step-turn configs keep working.
+        [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Hooks.Hook), "AfterAutoPrePlayPhaseEntered")]
         [HarmonyPrefix]
         public static void BeforePlayPhaseStart() => NotifyHook("BeforePlayPhaseStart");
 
@@ -125,11 +128,17 @@ public static class DebugPatches
         [HarmonyPrefix]
         public static void BeforeSideTurnStart() => NotifyHook("BeforeSideTurnStart");
 
-        [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Hooks.Hook), "BeforeTurnEnd")]
+        // BeforeTurnEnd is gone from Hook; BeforeSideTurnEnd is the surviving equivalent.
+        // The name reported to breakpoint clients stays the old one so existing
+        // step-turn configs keep working.
+        [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Hooks.Hook), "BeforeSideTurnEnd")]
         [HarmonyPrefix]
         public static void BeforeTurnEnd() => NotifyHook("BeforeTurnEnd");
 
-        [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Hooks.Hook), "AfterTurnEnd")]
+        // AfterTurnEnd is gone from Hook; AfterSideTurnEnd is the surviving equivalent.
+        // The name reported to breakpoint clients stays the old one so existing
+        // step-turn configs keep working.
+        [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Hooks.Hook), "AfterSideTurnEnd")]
         [HarmonyPrefix]
         public static void AfterTurnEnd() => NotifyHook("AfterTurnEnd");
 

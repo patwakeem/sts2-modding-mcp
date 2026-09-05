@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
@@ -45,7 +46,7 @@ public sealed class McpTestRelic : RelicModel
             ValueProp.Unpowered,
             null);
 
-        await PowerCmd.Apply<StrengthPower>(
+        await PowerCmd.Apply<StrengthPower>(new BlockingPlayerChoiceContext(), 
             Owner.Creature,
             3M,
             Owner.Creature,

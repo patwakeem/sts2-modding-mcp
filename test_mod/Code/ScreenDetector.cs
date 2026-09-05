@@ -65,7 +65,7 @@ public static class ScreenDetector
 
                 return new CurrentScreenInfo
                 {
-                    Screen = cm.IsPlayPhase ? "COMBAT_PLAYER_TURN" : "COMBAT_ENEMY_TURN",
+                    Screen = MCPTest.Compat.IsPlayPhase(cm) ? "COMBAT_PLAYER_TURN" : "COMBAT_ENEMY_TURN",
                     Source = "combat_manager",
                 };
             }
