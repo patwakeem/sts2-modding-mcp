@@ -69,9 +69,16 @@ public static class ModEntry
                 WriteLog($"Pool registration: {ex2.Message}");
             }
 
-            _harmony = new Harmony("com.elliotttate.mcptest");
-            _harmony.PatchAll();
-            WriteLog("Harmony patches applied.");
+            try
+            {
+                _harmony = new Harmony("com.elliotttate.mcptest");
+                _harmony.PatchAll();
+                WriteLog("Harmony patches applied.");
+            }
+            catch (Exception hEx)
+            {
+                WriteLog($"Harmony patch warning (non-fatal): {hEx}");
+            }
 
             // Prevent Godot from throttling when window loses focus.
             // By default Godot 4 sleeps heavily when unfocused, blocking bridge transitions.

@@ -128,17 +128,11 @@ public static class DebugPatches
         [HarmonyPrefix]
         public static void BeforeSideTurnStart() => NotifyHook("BeforeSideTurnStart");
 
-        // BeforeTurnEnd is gone from Hook; BeforeSideTurnEnd is the surviving equivalent.
-        // The name reported to breakpoint clients stays the old one so existing
-        // step-turn configs keep working.
-        [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Hooks.Hook), "BeforeSideTurnEnd")]
+        [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Hooks.Hook), "BeforeTurnEnd")]
         [HarmonyPrefix]
         public static void BeforeTurnEnd() => NotifyHook("BeforeTurnEnd");
 
-        // AfterTurnEnd is gone from Hook; AfterSideTurnEnd is the surviving equivalent.
-        // The name reported to breakpoint clients stays the old one so existing
-        // step-turn configs keep working.
-        [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Hooks.Hook), "AfterSideTurnEnd")]
+        [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Hooks.Hook), "AfterTurnEnd")]
         [HarmonyPrefix]
         public static void AfterTurnEnd() => NotifyHook("AfterTurnEnd");
 
